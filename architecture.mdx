@@ -430,9 +430,11 @@ The watch tower exposes comprehensive monitoring capabilities:
 
 By default on port 8080:
 
+- **`GET /`** - Root endpoint (returns "🐮 Moooo!")
 - **`GET /api/version`** - Version and build information
-- **`GET /api/config`** - Current configuration
+- **`GET /config`** - Current configuration
 - **`GET /api/dump/:chainId`** - Dump registry for a chain
+- **`GET /health`** - Health check for all chains
 - **`GET /metrics`** - Prometheus metrics
 
 ### Prometheus metrics

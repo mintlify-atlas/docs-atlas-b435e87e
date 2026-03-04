@@ -57,12 +57,12 @@ Response:
 
 The `dockerImageTag` field is populated from the `DOCKER_IMAGE_TAG` environment variable when running in Docker.
 
-### GET /api/config
+### GET /config
 
 Returns the current configuration of all monitored networks.
 
 ```bash
-curl http://localhost:8080/api/config
+curl http://localhost:8080/config
 ```
 
 Response:
@@ -250,7 +250,7 @@ curl http://localhost:8080/api/version
 curl http://localhost:8080/health
 
 # View configuration
-curl http://localhost:8080/api/config | jq
+curl http://localhost:8080/config | jq
 ```
 
 ### Monitor with Prometheus
