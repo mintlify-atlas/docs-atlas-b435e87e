@@ -1,0 +1,84 @@
+---
+title: Testing
+---
+
+## Running tests
+
+To run the test suite:
+
+```bash
+yarn test
+```
+
+This command:
+1. Builds the project (`yarn build`)
+2. Runs Jest tests against the compiled output in `./dist`
+
+## Test configuration
+
+The project uses Jest for testing. Configuration is defined in `package.json`:
+
+```json
+{
+  "jest": {
+    "automock": false,
+    "resetMocks": false,
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}"
+    ],
+    "coveragePathIgnorePatterns": [
+      "abi",
+      "types"
+    ]
+  }
+}
+```
+
+## Test structure
+
+Tests are located alongside their source files with the `.spec.ts` extension:
+
+```
+src/
+├── utils/
+│   ├── utils.ts
+│   └── utils.spec.ts
+└── ...
+```
+
+## Coverage collection
+
+Jest is configured to collect coverage from all TypeScript files in the `src` directory, excluding:
+
+- `abi/` directory (contract ABIs)
+- `types/` directory (generated types)
+
+## Testing considerations
+
+### Integration tests
+
+When testing against blockchain interactions:
+
+- Tests run against the compiled JavaScript in `./dist`
+- Ensure the project is built before running tests
+- Consider mocking RPC calls for unit tests
+
+### Test isolation
+
+The test configuration uses:
+- `automock: false` - Manual mocking control
+- `resetMocks: false` - Mocks persist between tests unless explicitly reset
+
+## Running specific tests
+
+To run a specific test file:
+
+```bash
+yarn test path/to/test.spec.ts
+```
+
+To run tests in watch mode during development:
+
+```bash
+yarn jest --watch
+```

@@ -1,0 +1,99 @@
+---
+title: Development setup
+---
+
+## Requirements
+
+To develop the CoW Protocol Watch Tower, you'll need:
+
+- `node` (`>= v16.18.0`)
+- `yarn`
+- `npm`
+
+## Installation
+
+Install project dependencies:
+
+```bash
+yarn
+```
+
+## Local development workflow
+
+It is recommended to test against the Goerli or Sepolia testnet during development.
+
+To run the watch-tower locally:
+
+```bash
+# Install dependencies
+yarn
+
+# Run watch-tower
+yarn cli run --config-path ./config.json
+```
+
+### Using the CLI
+
+The watch-tower provides a CLI interface with multiple commands:
+
+```bash
+# Run the watch-tower
+yarn cli run --config-path ./config.json
+
+# Dump database contents
+yarn cli dump-db --chain-id 1
+```
+
+### Available CLI options
+
+- `--config-path <path>` - Path to chain configuration file (default: `./config.json`)
+- `--database-path <path>` - Path to the database (default: `./database`)
+- `--log-level <level>` - Log level (default: `INFO`)
+- `--dry-run` - Do not publish orders to the OrderBook API
+- `--one-shot` - Run the watch-tower once and exit
+- `--disable-api` - Disable the REST API
+- `--api-port <port>` - Port for the REST API (default: `8080`)
+- `--silent` - Disable notifications (local logging only)
+- `--slack-webhook <url>` - Slack webhook URL
+- `--only-owner <address...>` - Monitor specific contract/safe addresses only
+
+## Testing against testnets
+
+When developing, it's recommended to test against Goerli or Sepolia testnet:
+
+1. Configure your RPC endpoint in the config file
+2. Set the appropriate deployment block for the testnet
+3. Run the watch-tower with your test configuration
+
+```bash
+yarn cli run --config-path ./config.testnet.json
+```
+
+## Environment variables
+
+All CLI options can also be set via environment variables:
+
+- `LOG_LEVEL` - Log level
+- `CONFIG_PATH` - Path to configuration file
+- `DATABASE_PATH` - Path to database
+- `DRY_RUN` - Dry run mode
+- `ONE_SHOT` - One-shot mode
+- `DISABLE_API` - Disable API server
+- `API_PORT` - API server port
+- `DISABLE_NOTIFICATIONS` - Disable notifications
+- `SLACK_WEBHOOK` - Slack webhook URL
+
+## Linting and formatting
+
+The project uses ESLint and Prettier for code quality:
+
+```bash
+# Lint the code
+yarn lint
+
+# Fix linting errors
+yarn lint:fix
+
+# Format the code
+yarn fmt
+```

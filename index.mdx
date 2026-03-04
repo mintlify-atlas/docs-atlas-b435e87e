@@ -1,97 +1,198 @@
 ---
-title: "Introduction"
-description: "Welcome to the new home for your documentation"
+title: CoW Protocol Watch Tower Documentation
+description: Monitor blockchain events for programmatic orders and post them to the CoW Protocol OrderBook API
+mode: custom
 ---
 
-## Setting up
+<div className="relative overflow-hidden bg-gradient-to-br from-[#0a1f44] via-[#040404] to-[#000000] dark:from-[#0a1f44] dark:via-[#040404] dark:to-[#000000]">
+  <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDUiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-40"></div>
+  
+  <div className="relative max-w-7xl mx-auto px-6 sm:px-8 py-20 lg:py-28">
+    <div className="lg:grid lg:grid-cols-12 lg:gap-12 items-center">
+      <div className="lg:col-span-7">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white dark:text-white mb-6 leading-tight">
+          CoW Protocol Watch Tower
+        </h1>
+        <p className="text-lg sm:text-xl text-gray-300 dark:text-gray-300 mb-8 max-w-2xl">
+          A standalone watch tower that monitors blockchain events for CoW Protocol programmatic orders and automatically posts them to the OrderBook API.
+        </p>
+        <div className="flex flex-wrap gap-4">
+          <a 
+            href="/getting-started/installation" 
+            className="inline-flex items-center px-6 py-3 rounded-lg bg-[#4dd0ff] hover:bg-[#3dbfef] text-[#000000] font-semibold transition-colors no-underline"
+          >
+            Get Started
+            <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+          <a 
+            href="/cli/run-command" 
+            className="inline-flex items-center px-6 py-3 rounded-lg border border-white/30 bg-white/10 hover:bg-white/20 text-white font-semibold transition-colors no-underline"
+          >
+            CLI Reference
+            <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+      <div className="hidden lg:block lg:col-span-5">
+        <div className="bg-[#1a1d27]/80 dark:bg-[#1a1d27]/80 border border-[#27272a] dark:border-[#27272a] rounded-xl p-6 backdrop-blur-sm">
+          <div className="flex items-center space-x-2 mb-4">
+            <div className="w-3 h-3 rounded-full bg-red-500"></div>
+            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+            <div className="w-3 h-3 rounded-full bg-green-500"></div>
+          </div>
+          <pre className="text-sm text-gray-300 dark:text-gray-300 overflow-x-auto">
+            <code>{`$ yarn cli run --config-path ./config.json
 
-Get your documentation site up and running in minutes.
+🐄 CoW Protocol Watch Tower
+Network: mainnet
+Starting from block: 17883049
+Monitoring conditional orders...
 
-<Card
-  title="Start here"
-  icon="rocket"
-  href="/quickstart"
-  horizontal
->
-  Follow our three step quickstart guide.
-</Card>
+✓ Found 3 new orders
+✓ Posted to OrderBook API
+✓ Registry updated`}</code>
+          </pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-## Make it yours
+<div className="mt-16 mb-16 max-w-5xl mx-auto px-6">
+  <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+    Quick start
+  </h2>
+  <p className="text-base text-gray-600 dark:text-gray-400 mb-8">
+    Get your watch tower up and running in minutes
+  </p>
 
-Design a docs site that looks great and empowers your users.
+  <Steps>
+    <Step title="Install dependencies">
+      Ensure you have Node.js (v16.18.0+) and yarn installed, then clone the repository and install dependencies.
+      
+      ```bash
+      git clone https://github.com/cowprotocol/watch-tower.git
+      cd watch-tower
+      yarn install
+      ```
+    </Step>
+    
+    <Step title="Configure your watch tower">
+      Create a `config.json` file based on the example configuration. Specify the networks you want to monitor and your RPC endpoints.
+      
+      ```bash
+      cp config.json.example config.json
+      # Edit config.json with your settings
+      ```
+      
+      <Tip>
+        See the [Configuration](/getting-started/configuration) guide for detailed setup instructions.
+      </Tip>
+    </Step>
+    
+    <Step title="Run the watch tower">
+      Start monitoring conditional orders on your configured networks.
+      
+      ```bash
+      yarn cli run --config-path ./config.json
+      ```
+      
+      The watch tower will start processing events and posting orders to the OrderBook API. You can view metrics at `http://localhost:8080/metrics`.
+    </Step>
+  </Steps>
+</div>
 
-<Columns cols={2}>
-  <Card
-    title="Edit locally"
-    icon="pen-to-square"
-    href="/development"
-  >
-    Edit your docs locally and preview them in real time.
-  </Card>
-  <Card
-    title="Customize your site"
-    icon="palette"
-    href="/essentials/settings"
-  >
-    Customize the design and colors of your site to match your brand.
-  </Card>
-    <Card
-    title="Set up navigation"
-    icon="map"
-    href="/essentials/navigation"
-  >
-    Organize your docs to help users find what they need and succeed with your product.
-  </Card>
-  <Card
-    title="API documentation"
-    icon="terminal"
-    href="/api-reference/introduction"
-  >
-    Auto-generate API documentation from OpenAPI specifications.
-  </Card>
-</Columns>
+<div className="mt-16 mb-16 max-w-5xl mx-auto px-6">
+  <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+    Key features
+  </h2>
+  <p className="text-base text-gray-600 dark:text-gray-400 mb-8">
+    Everything you need to monitor and manage programmatic orders
+  </p>
 
-## Create beautiful pages
+  <CardGroup cols={2}>
+    <Card title="Multi-chain support" icon="link" href="/configuration/networks">
+      Monitor conditional orders across Ethereum, Arbitrum, Gnosis Chain, Base, and more EVM-compatible networks.
+    </Card>
+    <Card title="Event monitoring" icon="tower-broadcast" href="/concepts/events">
+      Automatically detects ConditionalOrderCreated and MerkleRootSet events from the blockchain.
+    </Card>
+    <Card title="LevelDB registry" icon="database" href="/concepts/registry">
+      ACID-compliant storage with automatic cleanup of expired and cancelled orders.
+    </Card>
+    <Card title="REST API" icon="globe" href="/configuration/api-server">
+      Built-in API server with version info, config endpoints, and database dumps.
+    </Card>
+    <Card title="Prometheus metrics" icon="chart-line" href="/advanced/metrics">
+      Export metrics for monitoring active orders, owners, and processing performance.
+    </Card>
+    <Card title="Flexible deployment" icon="docker" href="/deployment/docker">
+      Run locally, deploy with Docker, or install on DAppNode for decentralized infrastructure.
+    </Card>
+  </CardGroup>
+</div>
 
-Everything you need to create world-class documentation.
+<div className="mt-16 mb-16 max-w-5xl mx-auto px-6">
+  <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+    Explore the documentation
+  </h2>
+  <p className="text-base text-gray-600 dark:text-gray-400 mb-8">
+    Learn about architecture, deployment options, and advanced configuration
+  </p>
 
-<Columns cols={2}>
-  <Card
-    title="Write with MDX"
-    icon="pen-fancy"
-    href="/essentials/markdown"
-  >
-    Use MDX to style your docs pages.
-  </Card>
-  <Card
-    title="Code samples"
-    icon="code"
-    href="/essentials/code"
-  >
-    Add sample code to demonstrate how to use your product.
-  </Card>
-  <Card
-    title="Images"
-    icon="image"
-    href="/essentials/images"
-  >
-    Display images and other media.
-  </Card>
-  <Card
-    title="Reusable snippets"
-    icon="recycle"
-    href="/essentials/reusable-snippets"
-  >
-    Write once and reuse across your docs.
-  </Card>
-</Columns>
+  <CardGroup cols={3}>
+    <Card title="Architecture" icon="sitemap" href="/architecture">
+      Understand how the watch tower processes events, manages state, and integrates with CoW Protocol.
+    </Card>
+    <Card title="CLI reference" icon="terminal" href="/cli/run-command">
+      Complete reference for all commands, options, and environment variables.
+    </Card>
+    <Card title="Core concepts" icon="book-open" href="/concepts/conditional-orders">
+      Learn about conditional orders, polling strategies, and the registry system.
+    </Card>
+    <Card title="Filter policies" icon="filter" href="/configuration/filter-policy">
+      Configure acceptance and rejection rules for orders, owners, and handlers.
+    </Card>
+    <Card title="Logging" icon="file-lines" href="/configuration/logging">
+      Fine-tune log levels globally or per module for effective debugging.
+    </Card>
+    <Card title="Notifications" icon="bell" href="/advanced/notifications">
+      Set up Slack notifications for error monitoring and alerting.
+    </Card>
+  </CardGroup>
+</div>
 
-## Need inspiration?
-
-<Card
-  title="See complete examples"
-  icon="stars"
-  href="https://mintlify.com/customers"
->
-  Browse our showcase of exceptional documentation sites.
-</Card>
+<div className="mt-16 mb-16 max-w-5xl mx-auto px-6">
+  <div className="bg-gradient-to-r from-[#0a1f44] to-[#040404] dark:from-[#0a1f44] dark:to-[#040404] rounded-2xl p-8 sm:p-12 border border-[#27272a] dark:border-[#27272a]">
+    <div className="max-w-3xl">
+      <h2 className="text-2xl sm:text-3xl font-bold text-white dark:text-white mb-4">
+        Ready to deploy your watch tower?
+      </h2>
+      <p className="text-lg text-gray-300 dark:text-gray-300 mb-6">
+        Follow our deployment guides for Docker, DAppNode, or custom infrastructure setups.
+      </p>
+      <div className="flex flex-wrap gap-4">
+        <a 
+          href="/deployment/docker" 
+          className="inline-flex items-center px-6 py-3 rounded-lg bg-[#4dd0ff] hover:bg-[#3dbfef] text-[#000000] font-semibold transition-colors no-underline"
+        >
+          Deploy with Docker
+          <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </a>
+        <a 
+          href="/deployment/dappnode" 
+          className="inline-flex items-center px-6 py-3 rounded-lg border border-white/30 bg-white/10 hover:bg-white/20 text-white font-semibold transition-colors no-underline"
+        >
+          Install on DAppNode
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

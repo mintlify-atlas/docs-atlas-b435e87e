@@ -1,122 +1,111 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "CoW Protocol Watch Tower",
+  "theme": "aspen",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#040404",
+    "light": "#7c7c7c",
+    "dark": "#c2c2c2"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "https://media.brand.dev/979cda2d-4bb2-43a6-8165-4d2ac1aa8650.png",
+  "logo": {
+    "light": "https://media.brand.dev/50b759c5-cee8-4da8-8e55-47ee49aab9a1.svg",
+    "dark": "https://media.brand.dev/50b759c5-cee8-4da8-8e55-47ee49aab9a1.svg"
+  },
+  "navbar": {
+    "primary": {
+      "type": "github",
+      "href": "https://github.com/cowprotocol/watch-tower"
+    }
+  },
+  "footer": {
+    "socials": {
+      "github": "https://github.com/cowprotocol/watch-tower"
+    }
+  },
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Documentation",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "Overview",
+            "pages": ["introduction", "architecture"]
+          },
+          {
+            "group": "Getting Started",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "getting-started/installation",
+              "getting-started/configuration",
+              "getting-started/running-locally"
             ]
           },
           {
-            "group": "Customization",
+            "group": "Deployment",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "deployment/docker",
+              "deployment/dappnode",
+              "deployment/requirements"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "CLI Reference",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
+              "cli/run-command",
+              "cli/dump-db-command",
+              "cli/options"
             ]
           },
           {
-            "group": "AI tools",
+            "group": "Core Concepts",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "concepts/conditional-orders",
+              "concepts/events",
+              "concepts/registry",
+              "concepts/polling"
+            ]
+          },
+          {
+            "group": "Configuration",
+            "pages": [
+              "configuration/networks",
+              "configuration/filter-policy",
+              "configuration/logging",
+              "configuration/api-server"
+            ]
+          },
+          {
+            "group": "Advanced",
+            "pages": [
+              "advanced/database-schema",
+              "advanced/storage",
+              "advanced/metrics",
+              "advanced/notifications"
             ]
           }
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "Development",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "Developer Guide",
             "pages": [
-              "api-reference/introduction"
+              "development/setup",
+              "development/testing",
+              "development/building"
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "Architecture",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "development/architecture/overview",
+              "development/architecture/services",
+              "development/architecture/domain-model"
             ]
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
-  },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
-  },
-  "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
-      }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
-    }
-  },
-  "contextual": {
-    "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
-  },
-  "footer": {
-    "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
-    }
+    ]
   }
 }

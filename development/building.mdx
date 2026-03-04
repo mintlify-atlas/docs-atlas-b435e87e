@@ -1,0 +1,119 @@
+---
+title: Building
+---
+
+## Build command
+
+To build the project:
+
+```bash
+yarn build
+```
+
+## Build process
+
+The build process executes the following steps:
+
+1. **Clean previous builds**
+   ```bash
+   rm -rf dist && rm -rf src/types/generated
+   ```
+   Removes the output directory and generated types to ensure a clean build.
+
+2. **Generate TypeScript types from ABIs**
+   ```bash
+   yarn typechain
+   ```
+   Uses TypeChain to generate TypeScript types from contract ABIs in the `abi/` directory.
+
+3. **Compile TypeScript**
+   ```bash
+   tsc
+   ```
+   Compiles all TypeScript source files to JavaScript in the `dist/` directory.
+
+4. **Copy schema files**
+   ```bash
+   cp ./src/types/config.schema.json dist/src/types/config.schema.json
+   ```
+   Copies the JSON schema file needed for runtime configuration validation.
+
+## TypeChain configuration
+
+TypeChain generates type-safe contract interfaces:
+
+```bash
+typechain --target ethers-v5 --out-dir src/types/generated/ "abi/*.json"
+```
+
+- **Target**: ethers-v5 (generates types compatible with ethers.js v5)
+- **Output**: `src/types/generated/`
+- **Input**: All JSON files in the `abi/` directory
+
+## Output directory
+
+The build outputs to the `dist/` directory:
+
+```
+dist/
+├── src/
+│   ├── commands/
+│   ├── domain/
+│   ├── services/
+│   ├── types/
+│   │   ├── generated/      # TypeChain generated types
+│   │   └── config.schema.json
+│   ├── utils/
+│   └── index.js
+└── ...
+```
+
+## Build artifacts
+
+After building, the following artifacts are generated:
+
+- **Compiled JavaScript**: All `.ts` files compiled to `.js` in `dist/`
+- **Type declarations**: `.d.ts` files for TypeScript consumers
+- **Contract types**: Generated TypeScript interfaces for smart contracts
+- **JSON schemas**: Configuration validation schemas
+
+## Entry point
+
+The main entry point is defined in `package.json`:
+
+```json
+{
+  "main": "dist/src/index.js"
+}
+```
+
+## Prepare hook
+
+The project includes a prepare hook that runs after installation:
+
+```bash
+yarn prepare
+```
+
+This runs:
+- `husky install` - Sets up git hooks
+- `yarn typechain` - Generates contract types
+- `yarn configschema` - Generates configuration schema
+
+## Building for production
+
+For production deployments:
+
+1. Run the full build: `yarn build`
+2. The `dist/` directory contains the deployable application
+3. Ensure all dependencies in `package.json` are installed in production
+
+## Docker builds
+
+To build the Docker image:
+
+```bash
+docker build -t watch-tower .
+```
+
+The Dockerfile handles the build process internally.

@@ -1,0 +1,146 @@
+---
+title: Run command
+description: Start the CoW Protocol Watch Tower to monitor and execute conditional orders
+---
+
+The `run` command starts the Watch Tower service to monitor conditional orders across configured blockchain networks.
+
+## Usage
+
+```bash
+watch-tower run [options]
+```
+
+## Options
+
+<ParamField path="--config-path" type="string" default="./config.json">
+  Path to the chain configuration file. This file defines the networks to monitor and their settings.
+  
+  **Environment variable:** `CONFIG_PATH`
+</ParamField>
+
+<ParamField path="--only-owner" type="string[]">
+  Addresses of contracts or safes to monitor conditional orders for. Can be specified multiple times to monitor multiple owners. Addresses must be valid hex-prefixed Ethereum addresses.
+  
+  **Example:** `--only-owner 0x1234... --only-owner 0x5678...`
+</ParamField>
+
+<ParamField path="--database-path" type="string" default="./database">
+  Path to the database directory where the Watch Tower stores its state.
+  
+  **Environment variable:** `DATABASE_PATH`
+</ParamField>
+
+<ParamField path="--log-level" type="string" default="INFO">
+  Log level for the Watch Tower. Controls the verbosity of logging output.
+  
+  **Environment variable:** `LOG_LEVEL`
+</ParamField>
+
+<ParamField path="--dry-run" type="boolean" default="false">
+  Run in dry-run mode without publishing orders to the OrderBook API. Useful for testing and validation.
+  
+  **Environment variable:** `DRY_RUN`
+</ParamField>
+
+<ParamField path="--one-shot" type="boolean" default="false">
+  Run the Watch Tower once and exit immediately. Useful for testing or cron-based execution.
+  
+  **Environment variable:** `ONE_SHOT`
+</ParamField>
+
+<ParamField path="--disable-api" type="boolean" default="false">
+  Disable the REST API server. When disabled, the Watch Tower runs without the HTTP API interface.
+  
+  **Environment variable:** `DISABLE_API`
+</ParamField>
+
+<ParamField path="--api-port" type="number" default="8080">
+  Port for the REST API server. Only applicable when the API is enabled.
+  
+  **Environment variable:** `API_PORT`
+</ParamField>
+
+<ParamField path="--silent" type="boolean" default="false">
+  Disable notifications and use local logging only. Conflicts with `--slack-webhook`.
+  
+  **Environment variable:** `DISABLE_NOTIFICATIONS`
+</ParamField>
+
+<ParamField path="--slack-webhook" type="string">
+  Slack webhook URL for sending notifications. Cannot be used with `--silent`.
+  
+  **Environment variable:** `SLACK_WEBHOOK`
+</ParamField>
+
+## Examples
+
+### Basic usage
+
+Run the Watch Tower with default settings:
+
+```bash
+watch-tower run
+```
+
+### Custom configuration
+
+Run with a custom configuration file and database path:
+
+```bash
+watch-tower run --config-path ./my-config.json --database-path ./my-db
+```
+
+### Monitor specific owners
+
+Monitor conditional orders only for specific contract addresses:
+
+```bash
+watch-tower run --only-owner 0x1234567890abcdef1234567890abcdef12345678 --only-owner 0xabcdefabcdefabcdefabcdefabcdefabcdefabcd
+```
+
+### Dry run mode
+
+Test the Watch Tower without publishing orders:
+
+```bash
+watch-tower run --dry-run
+```
+
+### One-shot execution
+
+Run once and exit (useful for cron jobs):
+
+```bash
+watch-tower run --one-shot
+```
+
+### With Slack notifications
+
+Enable Slack notifications for Watch Tower events:
+
+```bash
+watch-tower run --slack-webhook https://hooks.slack.com/services/YOUR/WEBHOOK/URL
+```
+
+### Custom API port
+
+Run the API server on a different port:
+
+```bash
+watch-tower run --api-port 3000
+```
+
+### Environment variables
+
+You can also configure the Watch Tower using environment variables:
+
+```bash
+export CONFIG_PATH=./my-config.json
+export DATABASE_PATH=./my-db
+export LOG_LEVEL=DEBUG
+export DRY_RUN=true
+export SLACK_WEBHOOK=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
+
+watch-tower run
+```
