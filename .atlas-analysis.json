@@ -1,0 +1,123 @@
+{
+  "projectType": "cli-tool",
+  "projectName": "CoW Protocol Watch Tower",
+  "projectDescription": "A standalone watch tower monitoring blockchain events for CoW Protocol programmatic orders and posting them to the OrderBook API",
+  "theme": "aspen",
+  "primaryColor": "#040404",
+  "lightColor": "#7c7c7c",
+  "darkColor": "#c2c2c2",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": ["introduction", "architecture"]
+          },
+          {
+            "group": "Getting Started",
+            "pages": [
+              "getting-started/installation",
+              "getting-started/configuration",
+              "getting-started/running-locally"
+            ]
+          },
+          {
+            "group": "Deployment",
+            "pages": [
+              "deployment/docker",
+              "deployment/dappnode",
+              "deployment/requirements"
+            ]
+          },
+          {
+            "group": "CLI Reference",
+            "pages": [
+              "cli/run-command",
+              "cli/dump-db-command",
+              "cli/options"
+            ]
+          },
+          {
+            "group": "Core Concepts",
+            "pages": [
+              "concepts/conditional-orders",
+              "concepts/events",
+              "concepts/registry",
+              "concepts/polling"
+            ]
+          },
+          {
+            "group": "Configuration",
+            "pages": [
+              "configuration/networks",
+              "configuration/filter-policy",
+              "configuration/logging",
+              "configuration/api-server"
+            ]
+          },
+          {
+            "group": "Advanced",
+            "pages": [
+              "advanced/database-schema",
+              "advanced/storage",
+              "advanced/metrics",
+              "advanced/notifications"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Development",
+        "groups": [
+          {
+            "group": "Developer Guide",
+            "pages": [
+              "development/setup",
+              "development/testing",
+              "development/building"
+            ]
+          },
+          {
+            "group": "Architecture",
+            "pages": [
+              "development/architecture/overview",
+              "development/architecture/services",
+              "development/architecture/domain-model"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "Monitors blockchain events for conditional orders",
+    "Posts discrete orders to CoW Protocol OrderBook API",
+    "Supports multiple EVM chains (Ethereum, Arbitrum, Gnosis, Base, etc.)",
+    "LevelDB-based registry with ACID guarantees",
+    "REST API for version info, config, and database dumps",
+    "Prometheus metrics integration",
+    "Docker and DAppNode deployment support",
+    "Flexible filter policies for orders, owners, and handlers",
+    "Configurable logging with module-level control",
+    "Slack notifications for error monitoring"
+  ],
+  "publicApiSurface": [
+    "run - Run the watch-tower in monitoring mode",
+    "dump-db - Dump database contents as JSON",
+    "--config-path - Path to chain configuration file",
+    "--database-path - Path to the LevelDB database",
+    "--log-level - Set logging verbosity",
+    "--dry-run - Run without publishing orders",
+    "--one-shot - Run once and exit",
+    "--disable-api - Disable the REST API server",
+    "--api-port - Configure REST API port (default 8080)",
+    "--only-owner - Monitor specific safe addresses",
+    "--slack-webhook - Slack webhook URL for notifications",
+    "GET /api/version - Get version information",
+    "GET /api/config - Get current configuration",
+    "GET /api/dump/:chainId - Dump database for chain",
+    "GET /metrics - Prometheus metrics endpoint"
+  ]
+}
